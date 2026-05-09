@@ -4,15 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let isOpen = false;
 
+    const sikeOverlay = document.getElementById('sike-overlay');
+
     boxContainer.addEventListener('click', () => {
         if (!isOpen) {
             box.classList.add('open');
             isOpen = true;
             createConfetti();
-        } else {
-            box.classList.remove('open');
-            isOpen = false;
+
+            // After 2 seconds, show the sike message
+            setTimeout(() => {
+                sikeOverlay.classList.add('active');
+            }, 2000);
         }
+    });
+
+    // Click sike overlay to dismiss
+    sikeOverlay.addEventListener('click', () => {
+        sikeOverlay.classList.remove('active');
     });
 
     function createConfetti() {
